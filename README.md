@@ -1,7 +1,7 @@
 # Effective_Cpp_third_Edition_notes
 This includes my notes from the book Effective C++ by Scott Meyers
 
-#### Chapter I
+#### Introduction
 
 ###### Definitions
 
@@ -20,3 +20,7 @@ This includes my notes from the book Effective C++ by Scott Meyers
   Note: Derefercing a NULL pointer holds an undefined behaviour.
   
   *interface* in C++ interfaces are not integral part of the languages. Therefore, in this book the word interface is used to refer to a funcion or a set of function that can be called by an object. For example, public interface of a class is just the set of public functions of that class same goes for private interface or protected interface. When the word interface is used in context of templates it means the expressions that are valid for the template type parameter.
+  
+  
+#### Chapter I
+  Item 1: View C++ as a federation of languages.
