@@ -60,6 +60,13 @@ This includes my notes from the book Effective C++ by Scott Meyers
    without const at the beginnging an operation like (a*
    b)=c would be legal which is undersirable.
    
+   Note: keyword mutable frees non-static variables from bit-wise constness  constraints.
+   
+   Things to remember
+   1. Declaring something const helps compilers detect usage errors. const can be applied to objects at any scope, to function parameters and return types, and to member functions as a whole.
+   2. Compilers enforce bitwise constness, but you should program using logical constness.
+   3. When const and non-const member functions have essentially identical implementations, code duplication can be avoided by having the non-const version call the const version( the opposite is attainable too, but should not be used, why?)
+   
    
    
   
