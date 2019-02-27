@@ -66,6 +66,32 @@ This includes my notes from the book Effective C++ by Scott Meyers
    1. Declaring something const helps compilers detect usage errors. const can be applied to objects at any scope, to function parameters and return types, and to member functions as a whole.
    2. Compilers enforce bitwise constness, but you should program using logical constness.
    3. When const and non-const member functions have essentially identical implementations, code duplication can be avoided by having the non-const version call the const version( the opposite is attainable too, but should not be used, why?)
+   #### Item 4: Make sure that objects are initialized
+   -The reason behind this is that C++ does not necessarily initialize objects by default. 
+   -Make sure to differentiate between initialization and assignment. C++ stapulated that all initializations have to happen before going inside any constructor.
+   
+   ##### Definition : static object: is an object that exists from te time  it is instatiated till the time the main exits.
+   ##### local static objects: Are static objects inside a function.
+   
+   ### Chapter 2 Constructors and Destructors.
+   #### Item 5: know what C++ silently calls.
+   If not explicitly written a compiler will declar its own version of a copy constructor, copy assignment operator  and a destructor. Moreover, if no constructor is declared a compiler will declare its own version of a default constructor. Assume having an empty class called empty.
+   
+   Then Empty e1; // calls the default constructor.
+   Empty e2(e1) calls the copy constructor;
+   e2=e1 ;// calls the copy assignment operator.
+   
+   Furtherore, going out of scope calls the destructor.
+   
+   ##### Things to remember: A compiler may or may not implicitly generate a class's default constructor, copy constructor, copy assignment operator, and destructor.
+   
+   #### Item 6 Explicity disallow the use of compiler-generated functions you do not want.
+   
+   When you want a class to have no copy constructor. Just not writing it will not work instead one can declare it privately( to prevent the compiler from writing it) and not implement it ( to prevent member functions, and friend classes from using it).
+   Another solution is to define a base class that disallows copying and inherit from it. This solution is a bit tricky instead one could use boost's noncopyable class.
+   
+   #### Item 7: Declare destructors virutal in polymorphic base classes.
+   
    
    
    
