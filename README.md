@@ -92,6 +92,23 @@ This includes my notes from the book Effective C++ by Scott Meyers
    
    #### Item 7: Declare destructors virutal in polymorphic base classes.
    
+   Things to remember:-
+   1. Polymorphic base classes should declare virtual destructors. If a class has any virtual functions, it should have virtual destructors( to avoid resource leakage). For example, when a pointer to a base class without virtual destructor is called. The resources of the derived class is leaked because the destructor of the base class will be called while the destructor of the dervied class will not be called. On the other hand, if the base class had a virtual destructor the pointer will call the destructor of the derived class. Therefore, no resource leakage would happen. This means that one should not inherit from stl containers if a pointer to the base class might be used.
+   2. Classes not designed to be base classes or not designed to be used polymorphically should not declare virtual destructors.
+   This is due to the fact that having a virtual destructor will increase the memory needed for an object to be passed around in other words. It will be more difficult to pass an object from C++ to C or Fortran without specific implementation details in the functions.
+   
+   ####Item 8: Prevent exceptions from leaving destructors:
+   
+   Things to remember:-
+   1. Destructors should never emit exceptions. If functions called in a destructor may trow, the destructor sould catch any exception then swallow them or terminate the program. Not doing so, may cause undefined behaviour. For example, having multiple exception active at the same time causes undefined behaviour.
+   2. If class clients need to be able to react to exceptions thrown during an operation. The class should provide a regular (i.e non-destructor ) function that performs the operation.
+   
+   #### Item 9: Never call virtual functions during construction or destruction.
+   
+   Things to remember:-
+   
+   Don't call virutal functions during construction or destruction because such calls will never go to a more derived class than that of the currently executing constructor or destructor. This may and will cause undesired behaviour. For example, if it is intended to initialize data members of the derived class most probably they won't since the called virtual function will be that of the base class. This will not give an error except if the virtual function in the base class is pure virtual function in that case a linking error will be given or a message saying pure virtual function call will be displayed
+   
    
    
    
